@@ -1,0 +1,26 @@
+{
+  "name": "teamproject2",
+  "version": "1.0.0",
+  "description": "Team Project 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeoldmixon/TeamProject2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeoldmixon/TeamProject2/issues"
+  },
+  "homepage": "https://github.com/jeoldmixon/TeamProject2#readme",
+  "dependencies": {
+    "express-handlebars": "^5.1.0",
+    "handlebars": "^4.7.6",
+    "nodemon": "^2.0.4",
+    "password-validator": "^5.1.0"
+  }
+}
