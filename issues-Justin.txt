@@ -1,6 +1,9 @@
 We will delete this file before submission- 
 --Simple place to keep questions/concerns/ideas
 
+https://codeburst.io/how-to-easily-set-up-node-environment-variables-in-your-js-application-d06740f9b9bd
+
+https://devcenter.heroku.com/articles/config-vars
 
 Thoughts:
 https://www.freecodecamp.org/news/learn-how-to-handle-authentication-with-node-using-passport-js-4a56ed18e81e/
