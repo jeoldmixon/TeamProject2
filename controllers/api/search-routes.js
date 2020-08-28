@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
-const { Search, User } = require('../models');
+const sequelize = require('../../config/connection');
+const { Search, User } = require('../../models');
 
 router.get('/', (req, res) => {
     Search.findAll({
@@ -24,24 +24,6 @@ router.get('/', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-});
-
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
-    }
-    
-    res.render('login');
-});
-
-router.get('/signup', (req, res) => {
-	if (req.session.loggedIn) {
-		res.redirect('/');
-		return;
-	}
-	
-	res.render('signup');
 });
 
 router.get('/:id', (req, res) => {
@@ -77,5 +59,20 @@ router.get('/:id', (req, res) => {
         });
 });
 
+router.post('/', (req, res) => {
+    Search.create({
+        title: req.body.title,
+        url: req.body.url,
+        company_name: req.body.company_name,
+        salary: req.body.salary,
+        location: req.body.location,
+        user_id: req.session.user_id
+    })
+        .then(dbSearchData => res.json(dbSearchData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
 
 module.exports = router;
