@@ -4,6 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -37,6 +38,15 @@ app.use(require('./controllers/'));
 
 app.use(routes);
 
+
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
+
+
+// const fetch = require('node-fetch');
+// require('dotenv').config();
+// app.get('/test', (req, res) => { fetch('https://www.themuse.com/api/public/jobs?page=10&api_key='+process.env.MUSE_API_KEY)
+//   .then(response => response.json())
+//   .then(data => res.json(data.results))
+// })
