@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const fetch = require('node-fetch');
 const Search = require('./models/Search')
+const postJobs = require('./public/javascript/getjobs')
 require('dotenv').config();
 
 const app = express();
@@ -47,17 +48,20 @@ sequelize.sync({ force: false }).then(() => {
 
 
 
-app.get('/test', (req, res) => { fetch('https://www.themuse.com/api/public/jobs?page=1&api_key='+process.env.MUSE_API_KEY)
+app.get('/test', (req, res) => { fetch('https://www.themuse.com/api/public/jobs?page=2&api_key='+process.env.MUSE_API_KEY)
   .then(response => response.json())
   .then(data => {
-    res.json(data.results)
+    // res.json(data.results)
     let jobArr = data.results;
     jobArr.forEach((job) => {
-      console.log(`title: ${job.name}, company: ${job.company.name} location: ${job.locations[0].name}, url: ${job.refs.landing_page}`)
-      const response = fetch('/api/jobs')
+      // console.log(`title: ${job.name}, company: ${job.company.name} location: ${job.locations[0].name}, url: ${job.refs.landing_page}`)
+      postJobs(job.name, job.company.name, job.locations[0].name, job.refs.landing_page)
     })
+    document.location.reload();
   })
+})
+
+
   // name job.locations.name job.refs.landing_page job.company.name
 
 
-})

@@ -1,6 +1,23 @@
-const fetch = require('node-fetch');
-require('dotenv').config();
-app.get('/test', (req, res) => { fetch('https://www.themuse.com/api/public/jobs?page=10&api_key='+process.env.MUSE_API_KEY)
-  .then(response => response.json())
-  .then(data => data.forEach(console.log('I did it')))
-})
+async function postJobs(title, company, location, url) {
+  const response = await fetch('/api/search', {
+     method: 'POST',
+     body: JSON.stringify({
+         title: title,
+         company:company,
+         location: location,
+         url: url,
+         user_id: 1
+     }),
+     headers: {
+         'Content-Type': 'application/json'
+     }
+   })
+ 
+   if (response.ok) {
+     console.log('Completed')
+   } else {
+     alert(response.statusText)
+   }
+ }
+
+ module.exports = postJobs;

@@ -77,30 +77,7 @@ const { Search, User } = require('../models');
 //         });
 // });
 
-router.get('/api/jobs', (req, res) => {
-    // include user/username
-    Search.findAll({})
-    .then(dbSearchData => {res.json(dbSearchData)})
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-})
-
-router.post('/api/jobs', (req, res) => {
-    Search.create({
-        url: req.body.url,
-        company_name: req.body.company_name,
-        title: req.body.title,
-        salary: req.body.salary,
-        location: req.body.location,
-        user_id: req.body.user_id
-    }).then(dbSearchData => res.json(dbSearchData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
+// 
 
 
 module.exports = router;
