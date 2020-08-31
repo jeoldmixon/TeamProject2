@@ -10,3 +10,5 @@ Search.belongsTo(User, {
 })
 
 module.exports = { User, Search }
+
+// 

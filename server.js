@@ -5,8 +5,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const fetch = require('node-fetch');
 require('dotenv').config();
-const joobleKey = process.env.JOOBLE_API_KEY;
-const { Search, User } = require('./models');
+
 
 
 const app = express();
@@ -46,54 +45,3 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
-
-const axios = require("axios");
-
-app.get("/test", function (req, res) {
-  const URL = `https://jooble.org/api/${joobleKey}`;
-  axios
-    .post(URL, {
-      keywords: "manager",
-      location: "Atlanta",
-      // radius: "25",
-      // salary: "100000",
-      page: "1"
-    })
-    .then(function (answer) {
-      answer.data.json();
-    })
-    .then(data => {
-      let jobArr = data.results;
-      jobArr.forEach((job) => {
-        Search.create({
-          title: job.title,
-          url: job.link,
-          company_name: job.company,
-          salary: job.salary,
-          location: job.location,
-          user_id: 3
-        })
-          .then(dbSearchData => res.json(dbSearchData))
-          .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-          });
-      });
-    })
-    .catch(function (err) {
-      res.json("hello!");
-    });
-});
-
-// app.get('/test', (req, res) => { fetch(`https://jooble.org/api/${joobleKey}`)
-//   .then(response => response.json())
-//   .then(data => {
-//     res.json(data.results)
-//     let jobArr = data.results;
-//     // jobArr.forEach((job) => {
-//     //   // console.log(`title: ${job.name}, company: ${job.company.name} location: ${job.locations[0].name}, url: ${job.refs.landing_page}`)
-//     //   // postJobs(job.name, job.company.name, job.locations[0].name, job.refs.landing_page)
-//     // })
-//     document.location.reload();
-//   })
-// })

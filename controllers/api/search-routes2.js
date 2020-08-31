@@ -3,6 +3,8 @@ const sequelize = require('../../config/connection');
 const { Search, User } = require('../../models');
 const fetch = require('node-fetch');
 require('dotenv').config();
+const joobleKey = process.env.JOOBLE_API_KEY;
+const axios = require("axios");
 
 router.get('/', (req, res) => {
     Search.findAll({
@@ -62,18 +64,27 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    console.log('https://www.themuse.com/api/public/jobs?page=2&api_key=' + process.env.MUSE_API_KEY);
-    fetch('https://www.themuse.com/api/public/jobs?page=2&api_key=' + process.env.MUSE_API_KEY)
-        .then(response => response.json())
+    const URL = `https://jooble.org/api/${joobleKey}`;
+    axios
+        .post(URL, {
+            keywords: "manager",
+            location: "Atlanta",
+            // radius: "25",
+            // salary: "100000",
+            page: "1"
+        })
+        .then(function (answer) {
+            answer.data.json();
+        })
         .then(data => {
             let jobArr = data.results;
             jobArr.forEach((job) => {
                 Search.create({
-                    title: job.name,
-                    url: job.refs.landing_page,
-                    company_name: job.company.name,
-                    salary: null,
-                    location: job.locations[0].name,
+                    title: job.title,
+                    url: job.link,
+                    company_name: job.company,
+                    salary: job.salary,
+                    location: job.location,
                     user_id: 1
                 })
                     .then(dbSearchData => res.json(dbSearchData))
@@ -82,6 +93,9 @@ router.post('/', (req, res) => {
                         res.status(500).json(err);
                     });
             });
+        })
+        .catch(function (err) {
+            res.json("hello!");
         });
 });
 
