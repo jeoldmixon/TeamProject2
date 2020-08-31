@@ -62,7 +62,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    fetch('https://www.themuse.com/api/public/jobs?page=2&api_key='+process.env.MUSE_API_KEY)
+    fetch('https://www.themuse.com/api/public/jobs?page=1&api_key='+process.env.MUSE_API_KEY)
         .then(response => response.json())
         .then(data => {
         let jobArr = data.results;
@@ -73,7 +73,7 @@ router.post('/', (req, res) => {
                 company_name: job.company.name,
                 salary: null,
                 location: job.locations[0].name,
-                user_id: 3
+                user_id: 4
             })
                 .then(dbSearchData => res.json(dbSearchData))
                 .catch(err => {

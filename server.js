@@ -3,6 +3,9 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
+const fetch = require('node-fetch');
+const Search = require('./models/Search')
+const postJobs = require('./public/javascript/getjobs')
 
 
 const app = express();
@@ -44,9 +47,5 @@ sequelize.sync({ force: false }).then(() => {
 });
 
 
-// const fetch = require('node-fetch');
-// require('dotenv').config();
-// app.get('/test', (req, res) => { fetch('https://www.themuse.com/api/public/jobs?page=10&api_key='+process.env.MUSE_API_KEY)
-//   .then(response => response.json())
-//   .then(data => res.json(data.results))
-// })
+
+
