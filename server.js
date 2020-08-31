@@ -9,7 +9,7 @@ const postJobs = require('./public/javascript/getjobs')
 
 
 const app = express();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 const sequelize = require("./config/connection");
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -47,20 +47,5 @@ sequelize.sync({ force: false }).then(() => {
 });
 
 
-
-app.get('/test', (req, res) => { fetch('https://www.themuse.com/api/public/jobs?page=2&api_key='+process.env.MUSE_API_KEY)
-  .then(response => response.json())
-  .then(data => {
-    let jobArr = data.results;
-    jobArr.forEach((job) => {
-      // console.log(`title: ${job.name}, company: ${job.company.name} location: ${job.locations[0].name}, url: ${job.refs.landing_page}`)
-      postJobs(job.name, job.company.name, job.locations[0].name, job.refs.landing_page)
-    })
-    document.location.reload();
-  })
-})
-
-
-  // name job.locations.name job.refs.landing_page job.company.name
 
 

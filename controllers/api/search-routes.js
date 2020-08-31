@@ -62,62 +62,27 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    let bothJobsArr = [];
     fetch('https://www.themuse.com/api/public/jobs?page=2&api_key='+process.env.MUSE_API_KEY)
         .then(response => response.json())
         .then(data => {
-            let jobArr = data.results;
-            jobArr.forEach((job) => {
-                let currentJob = {
-                    title: job.name,
-                    url: job.refs.landing_page,
-                    company_name: job.company.name,
-                    salary: null,
-                    location: job.locations[0].name,
-                    user_id: 1
-                }
-                bothJobsArr.push(currentJob)
-                
-            });
-        })
-        .then(() => {
-            fetch('https://www.themuse.com/api/public/jobs?page=1&api_key='+process.env.MUSE_API_KEY)
-            .then(response => response.json())
-            .then(data => {
-                let jobArr = data.results;
-                jobArr.forEach((job) => {
-                    let currentJob = {
-                        title: job.name,
-                        url: job.refs.landing_page,
-                        company_name: job.company.name,
-                        salary: null,
-                        location: job.locations[0].name,
-                        user_id: 2
-                    }
-                    bothJobsArr.push(currentJob)
+        let jobArr = data.results;
+        jobArr.forEach((job) => {
+            Search.create({
+                title: job.name,
+                url: job.refs.landing_page,
+                company_name: job.company.name,
+                salary: null,
+                location: job.locations[0].name,
+                user_id: 3
+            })
+                .then(dbSearchData => res.json(dbSearchData))
+                .catch(err => {
+                    console.log(err);
+                    res.status(500).json(err);
                 });
-            })
-        })
-        .then(()=> {
-            bothJobsArr.forEach(job => {
-                let { title, url, company_name, salary, location, user_id } = job 
-                Search.create({
-                    title: title,
-                    url: url,
-                    company_name: company_name,
-                    salary: salary,
-                    location: location,
-                    user_id: user_id
-                })
-                    .then(dbSearchData => res.json(dbSearchData))
-                    .catch(err => {
-                        console.log(err);
-                        res.status(500).json(err);
-                    });
-            })
-        })
+        });
+    });
 });
-
 
 
 // router.get('/api/jobs', (req, res) => {
@@ -144,54 +109,5 @@ router.post('/', (req, res) => {
     //         console.log(err);
     //         res.status(500).json(err);
     //     });
-    // });'
-
-
-    // router.post('/', (req, res) => {
-    //     bothJobsArr = []
-    //     fetch('https://www.themuse.com/api/public/jobs?page=2&api_key='+process.env.MUSE_API_KEY)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             let jobArr = data.results;
-    //             jobArr.forEach((job) => {
-    //                 Search.create({
-    //                     title: job.name,
-    //                     url: job.refs.landing_page,
-    //                     company_name: job.company.name,
-    //                     salary: null,
-    //                     location: job.locations[0].name,
-    //                     user_id: 1
-    //                 })
-    //                     .then(dbSearchData => res.json(dbSearchData))
-    //                     .catch(err => {
-    //                         console.log(err);
-    //                         res.status(500).json(err);
-    //                     });
-    //             });
-    //         }).then(() => {
-    //     fetch('https://www.themuse.com/api/public/jobs?page=1&api_key='+process.env.MUSE_API_KEY)
-    //         .then(response => response.json())
-    //         .then(data => {
-    //             let jobArr = data.results;
-    //             jobArr.forEach((job) => {
-    //                 Search.create({
-    //                     title: job.name,
-    //                     url: job.refs.landing_page,
-    //                     company_name: job.company.name,
-    //                     salary: null,
-    //                     location: job.locations[0].name,
-    //                     user_id: 1
-    //                 })
-    //                     .then(dbSearchData => res.json(dbSearchData))
-    //                     .catch(err => {
-    //                         console.log(err);
-    //                         res.status(500).json(err);
-    //                     });
-    //             });
-    //         });
-    //     });
     // });
-
-    
-
 module.exports = router;
