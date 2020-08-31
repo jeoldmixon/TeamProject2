@@ -62,7 +62,6 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    let bothJobsArr = [];
     fetch('https://www.themuse.com/api/public/jobs?page=2&api_key='+process.env.MUSE_API_KEY)
         .then(response => response.json())
         .then(data => {
@@ -192,6 +191,5 @@ router.post('/', (req, res) => {
     //     });
     // });
 
-    
 
 module.exports = router;

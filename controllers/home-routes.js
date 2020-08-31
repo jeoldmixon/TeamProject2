@@ -1,6 +1,10 @@
 const router = require('express').Router();
 // const sequelize = require('../config/connection');
 const { Search, User } = require('../models');
+router.get('/', (req, res) => {
+    res.render('dashboard')
+});
+
 
 // router.get('/', (req, res) => {
 //     Search.findAll({
