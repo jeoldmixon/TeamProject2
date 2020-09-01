@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
             'url',
             'company_name',
             'title',
-            'salary',
             'location'
         ],
         include: [
@@ -38,7 +37,6 @@ router.get('/:id', (req, res) => {
             'url',
             'company_name',
             'title',
-            'salary',
             'location'
         ],
         include: [
@@ -72,9 +70,8 @@ router.post('/', (req, res) => {
                 url: job.refs.landing_page,
                 company_name: job.company.name,
                 location: job.locations[0].name,
-                user_id: 3
+                user_id: 1
             })
-            .then(dbSearchData => res.json(dbSearchData))
             .catch(err => {
                 console.log(err);
                 res.status(500).json(err);

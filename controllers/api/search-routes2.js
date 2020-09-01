@@ -13,7 +13,6 @@ router.get('/', (req, res) => {
             'url',
             'company_name',
             'title',
-            'salary',
             'location'
         ],
         include: [
@@ -40,7 +39,6 @@ router.get('/:id', (req, res) => {
             'url',
             'company_name',
             'title',
-            'salary',
             'location'
         ],
         include: [
@@ -67,8 +65,8 @@ router.post('/', (req, res) => {
     const URL = `https://jooble.org/api/${joobleKey}`;
     axios
         .post(URL, {
-            keywords: "manager",
-            location: "Atlanta",
+            keywords: "developer",
+            location: "Austin",
             // radius: "25",
             // salary: "95000",
             page: "1"
@@ -77,17 +75,13 @@ router.post('/', (req, res) => {
             console.log(answer.data.jobs)
             let jobArr = answer.data.jobs;
             jobArr.forEach((job) => {
-                console.log(`======================================
-                ${job}
-                ======================================`)
                 Search.create({
                     title: job.title,
                     url: job.link,
                     company_name: job.company,
                     location: job.location,
-                    user_id: 1
+                    user_id: 2
                 })
-            .then(dbSearchData => res.json(dbSearchData))
             .catch(err => {
                 console.log(err);
                 res.status(500).json(err);

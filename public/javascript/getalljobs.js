@@ -1,4 +1,4 @@
-async function getAllJobs(event) {
+async function getMuseJobs(event) {
     event.preventDefault()
     
     const response = await fetch(`/api/search`, {
@@ -8,12 +8,20 @@ async function getAllJobs(event) {
         }
     });
 
+       
+
     if (response.ok) {
-        document.location.reload();
+        console.log('yata')
     } else {
         alert(response.statusText)
     }
 
+}
+
+
+async function getJoobleJobs(event) {    
+    event.preventDefault()
+    
     const response2 = await fetch(`/api/search2`, {
         method: 'POST',
         headers: {
@@ -21,11 +29,12 @@ async function getAllJobs(event) {
         }
     });
 
+
     if (response2.ok) {
+        console.log('made it into jooble')
         document.location.reload();
     } else {
         alert(response.statusText)
-    }
-}
-
-document.querySelector('#search').addEventListener('click', getAllJobs)
+    }}
+document.querySelector('#themuse').addEventListener('click', getMuseJobs)
+document.querySelector('#jooble').addEventListener('click', getJoobleJobs)
