@@ -21,7 +21,7 @@ async function getAllJobs(event) {
         }
     });
 
-    if (response.ok) {
+    if (response2.ok) {
         document.location.reload();
     } else {
         alert(response.statusText)

@@ -75,11 +75,11 @@ router.post('/', (req, res) => {
                 location: job.locations[0].name,
                 user_id: 4
             })
-                .then(dbSearchData => res.json(dbSearchData))
-                .catch(err => {
-                    console.log(err);
-                    res.status(500).json(err);
-                });
+            .then(dbSearchData => res.json(dbSearchData))
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            });
         });
     });
 });
