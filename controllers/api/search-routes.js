@@ -11,7 +11,6 @@ router.get('/', (req, res) => {
             'url',
             'company_name',
             'title',
-            'salary',
             'location'
         ],
         include: [
@@ -38,7 +37,6 @@ router.get('/:id', (req, res) => {
             'url',
             'company_name',
             'title',
-            'salary',
             'location'
         ],
         include: [
@@ -65,21 +63,18 @@ router.post('/', (req, res) => {
     fetch('https://www.themuse.com/api/public/jobs?page=2&api_key=' + process.env.MUSE_API_KEY)
         .then(response => response.json())
         .then(data => {
-            let jobArr = data.results;
-            jobArr.forEach((job) => {
-                Search.create({
-                    title: job.name,
-                    url: job.refs.landing_page,
-                    company_name: job.company.name,
-                    salary: null,
-                    location: job.locations[0].name,
-                    user_id: 3
-                })
-                    .then(dbSearchData => res.json(dbSearchData))
-                    .catch(err => {
-                        console.log(err);
-                        res.status(500).json(err);
-                    });
+        let jobArr = data.results;
+        jobArr.forEach((job) => {
+            Search.create({
+                title: job.name,
+                url: job.refs.landing_page,
+                company_name: job.company.name,
+                location: job.locations[0].name,
+                user_id: 1
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
             });
         });
 });

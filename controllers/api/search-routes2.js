@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Search, User } = require('../../models');
+const axios = require('axios')
+const joobleKey = process.env.JOOBLE_API_KEY;
 const fetch = require('node-fetch');
 require('dotenv').config();
 const joobleKey = process.env.JOOBLE_API_KEY;
@@ -13,7 +15,6 @@ router.get('/', (req, res) => {
             'url',
             'company_name',
             'title',
-            'salary',
             'location'
         ],
         include: [
@@ -40,7 +41,6 @@ router.get('/:id', (req, res) => {
             'url',
             'company_name',
             'title',
-            'salary',
             'location'
         ],
         include: [
@@ -67,33 +67,29 @@ router.post('/', (req, res) => {
     const URL = `https://jooble.org/api/${joobleKey}`;
     axios
         .post(URL, {
-            keywords: "manager",
-            location: "Atlanta",
+            keywords: "developer",
+            location: "Austin",
             // radius: "25",
-            // salary: "100000",
+            // salary: "95000",
             page: "1"
         })
         .then(function (answer) {
+            console.log(answer.data.jobs)
             let jobArr = answer.data.jobs;
             jobArr.forEach((job) => {
                 Search.create({
                     title: job.title,
                     url: job.link,
                     company_name: job.company,
-                    salary: job.salary,
                     location: job.location,
-                    user_id: 1
+                    user_id: 2
                 })
-                    .then(dbSearchData => res.json(dbSearchData))
-                    .catch(err => {
-                        console.log(err);
-                        res.status(500).json(err);
-                    });
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
             });
-        })
-        // .catch(function (err) {
-        //     res.json("hello!");
-        // });
+        });
+    });
 });
 
 

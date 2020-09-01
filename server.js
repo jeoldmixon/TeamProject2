@@ -3,13 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-const fetch = require('node-fetch');
 require('dotenv').config();
-const joobleKey = process.env.JOOBLE_API_KEY;
-const axios = require("axios");
-const { Search } = require('./models');
-
-
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -49,21 +43,3 @@ sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
 
-app.get("/test", function (req, res) {
-  const URL = `https://jooble.org/api/${joobleKey}`;
-  axios
-    .post(URL, {
-      keywords: "manager",
-      location: "Atlanta",
-      radius: "25",
-      salary: "100000",
-      page: "1"
-    })
-    .then(function (dbSearchData) {
-      console.log(dbSearchData.data.jobs);
-      res.json(dbSearchData.data);
-    })
-    .catch(function (err) {
-      res.json("hello!");
-    });
-});
