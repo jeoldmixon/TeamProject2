@@ -23,10 +23,6 @@ Search.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        salary: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-        },
         location: {
             type: DataTypes.STRING,
             allowNull: true,

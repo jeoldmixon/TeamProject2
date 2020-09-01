@@ -71,7 +71,6 @@ router.post('/', (req, res) => {
                 title: job.name,
                 url: job.refs.landing_page,
                 company_name: job.company.name,
-                salary: null,
                 location: job.locations[0].name,
                 user_id: 3
             })

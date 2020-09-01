@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Search, User } = require('../../models');
+const axios = require('axios')
+const joobleKey = process.env.JOOBLE_API_KEY;
 const fetch = require('node-fetch');
 require('dotenv').config();
 
@@ -68,20 +70,20 @@ router.post('/', (req, res) => {
             keywords: "manager",
             location: "Atlanta",
             // radius: "25",
-            // salary: "100000",
+            // salary: "95000",
             page: "1"
         })
         .then(function (answer) {
-            answer.data.json();
-        })
-        .then(data => {
-            let jobArr = data.results;
+            console.log(answer.data.jobs)
+            let jobArr = answer.data.jobs;
             jobArr.forEach((job) => {
+                console.log(`======================================
+                ${job}
+                ======================================`)
                 Search.create({
                     title: job.title,
                     url: job.link,
                     company_name: job.company,
-                    salary: job.salary,
                     location: job.location,
                     user_id: 1
                 })
