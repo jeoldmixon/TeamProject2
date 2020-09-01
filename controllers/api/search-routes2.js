@@ -74,10 +74,7 @@ router.post('/', (req, res) => {
             page: "1"
         })
         .then(function (answer) {
-            answer.data.json();
-        })
-        .then(data => {
-            let jobArr = data.results;
+            let jobArr = answer.data.jobs;
             jobArr.forEach((job) => {
                 Search.create({
                     title: job.title,
@@ -94,9 +91,9 @@ router.post('/', (req, res) => {
                     });
             });
         })
-        .catch(function (err) {
-            res.json("hello!");
-        });
+        // .catch(function (err) {
+        //     res.json("hello!");
+        // });
 });
 
 
