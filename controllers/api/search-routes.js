@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    fetch('https://www.themuse.com/api/public/jobs?page=2&api_key='+process.env.MUSE_API_KEY)
+    fetch('https://www.themuse.com/api/public/jobs?page=2&api_key=' + process.env.MUSE_API_KEY)
         .then(response => response.json())
         .then(data => {
         let jobArr = data.results;
@@ -77,33 +77,32 @@ router.post('/', (req, res) => {
                 res.status(500).json(err);
             });
         });
-    });
 });
 
 
 // router.get('/api/jobs', (req, res) => {
-    //     // include user/username
-    //     Search.findAll({})
-    //     .then(dbSearchData => {res.json(dbSearchData)})
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(500).json(err);
-    //     });
-    // })
-    
-    // router.post('/api/jobs', (req, res) => {
-    //     console.log(req.body)
-    //     Search.create({
-    //         url: req.body.url,
-    //         company_name: req.body.company_name,
-    //         title: req.body.title,
-    //         salary: req.body.salary,
-    //         location: req.body.location,
-    //         user_id: req.body.user_id
-    //     }).then(dbSearchData => res.json(dbSearchData))
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(500).json(err);
-    //     });
-    // });
+//     // include user/username
+//     Search.findAll({})
+//     .then(dbSearchData => {res.json(dbSearchData)})
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// })
+
+// router.post('/api/jobs', (req, res) => {
+//     console.log(req.body)
+//     Search.create({
+//         url: req.body.url,
+//         company_name: req.body.company_name,
+//         title: req.body.title,
+//         salary: req.body.salary,
+//         location: req.body.location,
+//         user_id: req.body.user_id
+//     }).then(dbSearchData => res.json(dbSearchData))
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// });
 module.exports = router;

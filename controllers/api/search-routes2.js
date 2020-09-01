@@ -5,6 +5,8 @@ const axios = require('axios')
 const joobleKey = process.env.JOOBLE_API_KEY;
 const fetch = require('node-fetch');
 require('dotenv').config();
+const joobleKey = process.env.JOOBLE_API_KEY;
+const axios = require("axios");
 
 router.get('/', (req, res) => {
     Search.findAll({
@@ -92,28 +94,28 @@ router.post('/', (req, res) => {
 
 
 // router.get('/api/jobs', (req, res) => {
-    //     // include user/username
-    //     Search.findAll({})
-    //     .then(dbSearchData => {res.json(dbSearchData)})
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(500).json(err);
-    //     });
-    // })
-    
-    // router.post('/api/jobs', (req, res) => {
-    //     console.log(req.body)
-    //     Search.create({
-    //         url: req.body.url,
-    //         company_name: req.body.company_name,
-    //         title: req.body.title,
-    //         salary: req.body.salary,
-    //         location: req.body.location,
-    //         user_id: req.body.user_id
-    //     }).then(dbSearchData => res.json(dbSearchData))
-    //     .catch(err => {
-    //         console.log(err);
-    //         res.status(500).json(err);
-    //     });
-    // });
+//     // include user/username
+//     Search.findAll({})
+//     .then(dbSearchData => {res.json(dbSearchData)})
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// })
+
+// router.post('/api/jobs', (req, res) => {
+//     console.log(req.body)
+//     Search.create({
+//         url: req.body.url,
+//         company_name: req.body.company_name,
+//         title: req.body.title,
+//         salary: req.body.salary,
+//         location: req.body.location,
+//         user_id: req.body.user_id
+//     }).then(dbSearchData => res.json(dbSearchData))
+//     .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// });
 module.exports = router;
