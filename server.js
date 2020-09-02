@@ -3,10 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
-const fetch = require('node-fetch');
-const Search = require('./models/Search')
-const postJobs = require('./public/javascript/getjobs')
-
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -45,7 +42,4 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
 });
-
-
-
 
