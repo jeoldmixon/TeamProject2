@@ -1,8 +1,55 @@
-<p>This is the dashboard</p>
+<div class="flex-column min-100-vh">
+    <header class="hero">
+        <h1 class="app-title"><i class="fab"></i> The Search!</h1>
+        <p>
 
-<button type="submit" id="themuse">theMuse</button>
-<button type="submit" id="jooble">Jooble</button>
 
-<h3>I made a change</h3>
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4">
 
-<script src="/javascript/getalljobs.js"></script>
+            <div class="card">
+                <h3 class="card-header text-uppercase">Search</h3>
+                <div class="card-body">
+                    {{!-- <div>
+                        <div class="icon"><span class="icon-briefcase"></span></div>
+                        <input type="text" class="form-control" placeholder="eg. Junior Developer" />
+                    </div> --}}
+                    <div>
+                        <div class="icon"><span class="icon-map-marker"></span></div>
+                        <input id="city" type="text" class="form-control" placeholder="Location" />
+                    </div>
+                    <button id="themuse" type="submit" class="btn">The Muse</button>
+                    <button id="jooble" type="submit" class="btn">Jooble</button>
+                </div>
+            </div>
+
+            {{!-- 2nd card --}}
+
+            {{!-- <div class="card">
+                <h3 class="card-header text-uppercase">Search by </h3>
+                <div id="language-buttons" class="card-body">
+                    <button data-language="javascript" class="btn">JavaScript</button>
+                    <button data-language="html" class="btn">HTML</button>
+                    <button data-language="css" class="btn">CSS</button>
+                </div>
+            </div>
+        </div> --}}
+
+
+            {{!-- iFrame ??? --}}
+
+            <div class="col-12 col-md-8">
+                <h2 class="subtitle">Search Results: <span id=""></span></h2>
+                <div id="" class="list-group">
+                    {{!-- <iframe width="560" height="315"
+                        src="https://www.themuse.com/jobs/enterpriseholdings/management-trainee-e48b8e" frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe> --}}
+                    {{!-- <iframe src="https://www.yahoo.com" width="100%" height="300"></iframe> --}}
+
+                </div>
+            </div>
+    </main>
+    <script src="/javascript/getalljobs.js"></script>
+
+</div>
