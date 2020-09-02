@@ -5,8 +5,6 @@ const axios = require('axios')
 const joobleKey = process.env.JOOBLE_API_KEY;
 const fetch = require('node-fetch');
 require('dotenv').config();
-const joobleKey = process.env.JOOBLE_API_KEY;
-const axios = require("axios");
 
 router.get('/', (req, res) => {
     Search.findAll({
@@ -68,7 +66,7 @@ router.post('/', (req, res) => {
     axios
         .post(URL, {
             keywords: "developer",
-            location: "Austin",
+            location: req.body.city,
             // radius: "25",
             // salary: "95000",
             page: "1"
