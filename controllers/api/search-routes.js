@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    fetch('https://www.themuse.com/api/public/jobs?page=2&api_key=' + process.env.MUSE_API_KEY)
+    fetch(`https://www.themuse.com/api/public/jobs?category=Engineering&level=Entry%20Level&level=Mid%20Level&location=${req.body.city}&page=1&api_key=${process.env.MUSE_API_KEY}`)
         .then(response => response.json())
         .then(data => {
             let jobArr = data.results;
