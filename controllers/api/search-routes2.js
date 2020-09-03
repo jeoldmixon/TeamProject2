@@ -1,95 +1,81 @@
-const router = require('express').Router();
-const sequelize = require('../../config/connection');
-const { Search, User } = require('../../models');
-const axios = require('axios')
+const router = require("express").Router();
+const sequelize = require("../../config/connection");
+const { Search, User } = require("../../models");
+const axios = require("axios");
 const joobleKey = process.env.JOOBLE_API_KEY;
-const fetch = require('node-fetch');
-require('dotenv').config();
+const fetch = require("node-fetch");
+require("dotenv").config();
 
-router.get('/', (req, res) => {
-    Search.findAll({
-        attributes: [
-            'id',
-            'url',
-            'company_name',
-            'title',
-            'location'
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
-    })
-        .then(dbSearchData => res.json(dbSearchData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-router.get('/:id', (req, res) => {
-    Search.findOne({
-        where: {
-            id: req.params.id
-        },
-        attributes: [
-            'id',
-            'url',
-            'company_name',
-            'title',
-            'location'
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            }
-        ]
-    })
-        .then(dbSearchData => {
-            if (!dbSearchData) {
-                res.status(404).json({ message: 'No post found with this id' });
-                return;
-            }
-            res.json(dbSearchData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-router.post('/', (req, res) => {
-    const URL = `https://jooble.org/api/${joobleKey}`;
-    axios
-        .post(URL, {
-            keywords: "developer",
-            location: req.body.city,
-            // radius: "25",
-            // salary: "95000",
-            page: "1"
-        })
-        .then(function (answer) {
-            console.log(answer.data.jobs)
-            let jobArr = answer.data.jobs;
-            jobArr.forEach((job) => {
-                Search.create({
-                    title: job.title,
-                    url: job.link,
-                    company_name: job.company,
-                    location: job.location,
-                    user_id: 2
-                })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-        });
+router.get("/", (req, res) => {
+  Search.findAll({
+    attributes: ["id", "url", "company_name", "title", "location"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
+    .then((dbSearchData) => res.json(dbSearchData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
+router.get("/:id", (req, res) => {
+  Search.findOne({
+    where: {
+      id: req.params.id,
+    },
+    attributes: ["id", "url", "company_name", "title", "location"],
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+    ],
+  })
+    .then((dbSearchData) => {
+      if (!dbSearchData) {
+        res.status(404).json({ message: "No post found with this id" });
+        return;
+      }
+      res.json(dbSearchData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.post("/", (req, res) => {
+  const URL = `https://jooble.org/api/${joobleKey}`;
+  axios
+    .post(URL, {
+      keywords: "developer",
+      location: req.body.city,
+      // radius: "25",
+      // salary: "95000",
+      page: "1",
+    })
+    .then(function (answer) {
+      console.log(answer.data.jobs);
+      let jobArr = answer.data.jobs;
+      jobArr.forEach((job) => {
+        Search.create({
+          title: job.title,
+          url: job.link,
+          company_name: job.company,
+          location: job.location,
+          user_id: 1,
+        }).catch((err) => {
+          console.log(err);
+          res.status(500).json(err);
+        });
+      });
+    });
+});
 
 // router.get('/api/jobs', (req, res) => {
 //     // include user/username
