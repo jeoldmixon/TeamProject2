@@ -36,7 +36,7 @@ router.get('/dashboard', (req, res) => {
       search.get({ plain: true })
     });
 
-    console.log(searches[0].title)
+    
     res.render('dashboard', { searches, loggedIn: true });
   })
   .catch(err => {
