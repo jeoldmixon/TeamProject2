@@ -32,9 +32,7 @@ router.get('/dashboard', (req, res) => {
     attributes: ['id', 'url', 'company_name', 'title', 'location'],
   })
   .then(dbSearchData => {
-    const searches = dbSearchData.map(search => {
-      search.get({ plain: true })
-    });
+    const searches = dbSearchData.map(search => search.get({ plain: true }));
 
     
     res.render('dashboard', { searches, loggedIn: true });

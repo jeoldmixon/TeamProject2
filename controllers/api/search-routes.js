@@ -42,7 +42,8 @@ router.post('/', (req, res) => {
                     user_id: req.session.user_id
                 })
             })
-        }).catch(err => {
+        }).then(dbSearchData => res.json(dbSearchData))
+        .catch(err => {
             console.log(err);
             res.status(500).json(err);
     })    

@@ -2,8 +2,7 @@ const city = document.getElementById('city');
 
 async function getMuseJobs(event) {
     event.preventDefault()
-    console.log(city);
-    console.log(city.value);
+    
     const response = await fetch(`/api/search`, {
         method: 'POST',
         body: JSON.stringify({
@@ -14,10 +13,9 @@ async function getMuseJobs(event) {
         }
     });
 
-
-
+    
     if (response.ok) {
-        console.log('yata')
+        document.location.reload();
     } else {
         alert(response.statusText)
     }
@@ -27,8 +25,7 @@ async function getMuseJobs(event) {
 
 async function getJoobleJobs(event) {
     event.preventDefault()
-    console.log(city);
-    console.log(city.value);
+
     const response2 = await fetch(`/api/search2`, {
         method: 'POST',
         body: JSON.stringify({
@@ -38,10 +35,9 @@ async function getJoobleJobs(event) {
             'Content-Type': 'application/json'
         }
     });
-
+    console.log(response.ok)
 
     if (response2.ok) {
-        console.log('made it into jooble')
         document.location.reload();
     } else {
         alert(response.statusText)

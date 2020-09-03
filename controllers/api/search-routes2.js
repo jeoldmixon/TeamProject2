@@ -41,10 +41,12 @@ router.post("/", (req, res) => {
           company_name: job.company,
           location: job.location,
           user_id: req.session.user_id
-        }).catch((err) => {
-          console.log(err);
-          res.status(500).json(err);
-        });
+        })
+
+      }).then(dbSearchData => res.json(dbSearchData))
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
       });
     });
 });
