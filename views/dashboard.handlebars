@@ -1,8 +1,42 @@
-<p>This is the dashboard</p>
+{{!-- Left side sticky lookup --}}
 
-<button type="submit" id="themuse">theMuse</button>
-<button type="submit" id="jooble">Jooble</button>
+<div class="flex-column min-100-vh">
+    <h1 class="card bg-dark app-title"><i class="fab"></i> The Search Is On!</h1>
+    <main class="flex-row justify-space-between">
+        <div class="col-12 col-md-4 position-sticky">
 
-<h3>I made a change</h3>
+            <div class="card bg-dark">
+                <h3 class="card-header text-uppercase">Search</h3>
+                <div class="card-body">
+                    <div>
+                        <div class="icon"><span class="icon-map-marker"></span></div>
+                        <input id="city" type="text" class="form-control full-width" placeholder="Location" value="" />
+                    </div>
+                    <button id="themuse" type="submit" class="btn btn-link bg-primary text-white">The Muse</button>
+                    <button id="jooble" type="submit" class="btn btn-link bg-primary text-white">Jooble</button>
+                </div>
+            </div>
+
+            {{!-- 2nd card --}}
+        </div>
+
+
+        <div class="col-12 col-md-8">
+            {{#if searches.length}}
+                <section>
+                    <h2 class="subtitle">Search Results: </h2>
+                    <ul>
+                        {{#each searches}}
+                            <li>
+                                {{> searchinfo}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </section>
+            {{/if}}
+        </div>
+    </main>
+</div>
+
 
 <script src="/javascript/getalljobs.js"></script>

@@ -1,13 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+<head class="fixed-top">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Finder</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon"    href="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQMv19jox9Zb7AB7zRbKu8YKGvXQO7jH_1ZHw&usqp=CAU"    type="image/icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>gitDevJob</title>
 </head>
-<body>
-    <h1>Job Finder</h1>
 
-    {{{ body }}}
+<body class="bg-secondary">
+    <header class="d-flex justify-content-around bg-dark">
+        <h1 class="text-white">gitDevJob</h1>
+        <nav>
+            <ul>
+            {{!-- {{#if loggedIn}} --}}
+                <li>
+                    <button id="logout" class="btn btn-link bg-primary text-white">logout</button>
+                </li>
+            {{!-- {{/if}} --}}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {{{ body }}}
+    </main>
+    <footer class="bg-dark p-2 m-0 text-center fixed-bottom" role="alert">
+        <div class="d-flex justify-content-around">
+            <div>
+                <p class="text-white">&copy {{current_year}} Happy Coding!</p>
+            </div>
+            <div class="justify-content-around">
+                <img src="/images/github.png" class="github"> 
+                <a class="text-white mr-2" href="https://github.com/NIKO09ES">Nicolas Esquivel |</a>
+                <a class="text-white mr-2" href="https://github.com/jeoldmixon"> Justin Oldmixon |</a>
+                <a class="text-white" href="https://github.com/joshuaweisbrodtorres"> Joshua Weisbrod-Torres</a>
+            </div>
+        </div>
+    </footer>
+    {{!-- {{#if loggedIn}} --}}
+        <script src="/javascript/logout.js"></script>
+    {{!-- {{/if}} --}}
 </body>
+
 </html>
