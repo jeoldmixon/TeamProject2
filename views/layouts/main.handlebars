@@ -19,9 +19,13 @@
             <a href="/">gitDevJob</a>
         </h1>
         <nav>
-            {{#if loggedIn}}
-            <button id="logout" class="btn-no-style">logout</button>
-            {{/if}}
+            <ul>
+            {{!-- {{#if loggedIn}} --}}
+                <li>
+                    <button id="logout" class="btn-no-style">logout</button>
+                </li>
+            {{!-- {{/if}} --}}
+            </ul>
         </nav>
     </header>
     <main>
@@ -30,7 +34,9 @@
     <footer class="alert alert-info text-center" role="alert">
         Happy Coding!
     </footer>
+    {{!-- {{#if loggedIn}} --}}
+        <script src="/javascript/logout.js"></script>
+    {{!-- {{/if}} --}}
 </body>
-
 
 </html>

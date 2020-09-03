@@ -22,21 +22,21 @@
 
 
         <div class="col-12 col-md-8">
-            <h2 class="subtitle">Search Results: </h2>
-            <ul class="list-group card">
-                {{#each search}}
-                <li>
-                    <h2><a href="{{url}}">{{title}}</a></h2>
-                    <p>{{company_name}}</p>
-                    <p>{{location}}</p>
-                    <p>{{url}}</p>
-                </li>
-
-                {{/each}}
-            </ul>
+            {{#if searches.length}}
+                <section>
+                    <h2 class="subtitle">Search Results: </h2>
+                    <ul>
+                        {{#each searches}}
+                            <li>
+                                {{> searchinfo}}
+                            </li>
+                        {{/each}}
+                    </ul>
+                </section>
+            {{/if}}
         </div>
+    </main>
+</div>
 
-</div>
-</main>
-</div>
+
 <script src="/javascript/getalljobs.js"></script>

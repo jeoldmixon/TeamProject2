@@ -23,40 +23,12 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
-  Search.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: ["id", "url", "company_name", "title", "location"],
-    include: [
-      {
-        model: User,
-        attributes: ["username"],
-      },
-    ],
-  })
-    .then((dbSearchData) => {
-      if (!dbSearchData) {
-        res.status(404).json({ message: "No post found with this id" });
-        return;
-      }
-      res.json(dbSearchData);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
 router.post("/", (req, res) => {
   const URL = `https://jooble.org/api/${joobleKey}`;
   axios
     .post(URL, {
       keywords: "developer",
       location: req.body.city,
-      // radius: "25",
-      // salary: "95000",
       page: "1",
     })
     .then(function (answer) {
@@ -68,38 +40,41 @@ router.post("/", (req, res) => {
           url: job.link,
           company_name: job.company,
           location: job.location,
-          user_id: 1,
-        }).catch((err) => {
-          console.log(err);
-          res.status(500).json(err);
-        });
+          user_id: req.session.user_id
+        })
+
+      }).then(dbSearchData => res.json(dbSearchData))
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
       });
     });
 });
 
-// router.get('/api/jobs', (req, res) => {
-//     // include user/username
-//     Search.findAll({})
-//     .then(dbSearchData => {res.json(dbSearchData)})
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     });
-// })
-
-// router.post('/api/jobs', (req, res) => {
-//     console.log(req.body)
-//     Search.create({
-//         url: req.body.url,
-//         company_name: req.body.company_name,
-//         title: req.body.title,
-//         salary: req.body.salary,
-//         location: req.body.location,
-//         user_id: req.body.user_id
-//     }).then(dbSearchData => res.json(dbSearchData))
-//     .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//     });
-// });
 module.exports = router;
+
+// router.get("/:id", (req, res) => {
+  //   Search.findOne({
+  //     where: {
+  //       id: req.params.id,
+  //     },
+  //     attributes: ["id", "url", "company_name", "title", "location"],
+  //     include: [
+  //       {
+  //         model: User,
+  //         attributes: ["username"],
+  //       },
+  //     ],
+  //   })
+  //     .then((dbSearchData) => {
+  //       if (!dbSearchData) {
+  //         res.status(404).json({ message: "No post found with this id" });
+  //         return;
+  //       }
+  //       res.json(dbSearchData);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       res.status(500).json(err);
+  //     });
+  // });
