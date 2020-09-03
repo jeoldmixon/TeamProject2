@@ -1,6 +1,7 @@
 const router = require('express').Router();
 // const sequelize = require('../config/connection');
-const { Search, User } = require('../models');
+const { Search } = require('../models');
+const withAuth = require('../utils/auth')
 
 router.get('/', (req, res) => {
   res.render('homepage');
@@ -24,7 +25,7 @@ router.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', withAuth, (req, res) => {
   Search.findAll({
     where: {
       user_id: req.session.user_id

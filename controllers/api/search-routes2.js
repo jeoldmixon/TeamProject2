@@ -32,7 +32,6 @@ router.post("/", (req, res) => {
       page: "1",
     })
     .then(function (answer) {
-      console.log(answer.data.jobs);
       let jobArr = answer.data.jobs;
       jobArr.forEach((job) => {
         Search.create({
@@ -42,12 +41,11 @@ router.post("/", (req, res) => {
           location: job.location,
           user_id: req.session.user_id
         })
-
-      }).then(dbSearchData => res.json(dbSearchData))
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+      })
+    }).then(dbSearchData => res.json(dbSearchData))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 

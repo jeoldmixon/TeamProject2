@@ -26,7 +26,7 @@ async function getMuseJobs(event) {
 async function getJoobleJobs(event) {
     event.preventDefault()
 
-    const response2 = await fetch(`/api/search2`, {
+    const response = await fetch(`/api/search2`, {
         method: 'POST',
         body: JSON.stringify({
             city: city.value
@@ -37,7 +37,7 @@ async function getJoobleJobs(event) {
     });
     console.log(response.ok)
 
-    if (response2.ok) {
+    if (response.ok) {
         document.location.reload();
     } else {
         alert(response.statusText)
