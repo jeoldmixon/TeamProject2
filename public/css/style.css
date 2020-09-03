@@ -2,7 +2,7 @@
   --primary: #dd6f6f;
   --secondary: #b35a5a;
   --tertiary: #916464;
-  --light-dark: #7c0d0d;
+  --light-dark: #7c620d;
   --dark: #f7f393;
   --border-radius: 0.3rem;
 }
@@ -95,7 +95,7 @@ p {
   box-shadow: 2px 2px var(--dark);
 }
 
-.hero {
+/* .hero {
   padding: 3% 4%;
   background-color: var(--dark);
   color: var(--primary);
@@ -103,7 +103,7 @@ p {
 
 .hero p {
   max-width: 75%;
-}
+} */
 
 .app-title {
   font-size: 3rem;
@@ -133,20 +133,20 @@ p {
   background-color: var(--dark);
 }
 
-.status-icon {
+/* .status-icon {
   padding: 2px 5px;
   margin: 0 5px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: var(--border-radius);
-}
+} */
 
-.icon-danger {
+/* .icon-danger {
   color: rgb(255, 70, 70);
-}
+} */
 
-.icon-success {
+/* .icon-success {
   color: rgb(29, 153, 255);
-}
+} */
 
 /* CARDS */
 .card {
@@ -197,9 +197,9 @@ p {
 }
 
 /* FONT UTILS */
-.text-uppercase {
+/* .text-uppercase {
   text-transform: uppercase;
-}
+} */
 
 /* FLEX CONTENT */
 .flex-row {
