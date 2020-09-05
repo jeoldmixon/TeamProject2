@@ -49,6 +49,20 @@ router.post('/', (req, res) => {
         });    
 });
 
+router.delete('/', (req, res) => {
+    console.log('user_id id ' +req.session.user_id)
+    Search.destroy({
+        where: {
+            user_id: req.session.user_id
+        }
+    })
+    .then(dbSearchData => res.json(dbSearchData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+})
+
 module.exports = router;
 
 // router.get('/:id', (req, res) => {
