@@ -1,6 +1,6 @@
 async function deleteFormHandler(event) {
     event.preventDefault();
-    let id = document.querySelector('.individual-id').outerHTML.split('"')[1]
+    let id = document.querySelector('.title').outerHTML.split('"')[1]
     console.log(id[1])
 
 
@@ -9,7 +9,7 @@ async function deleteFormHandler(event) {
     })
 
     if (response.ok) {
-        document.location.replace('/dashboard/');
+        document.location.reload();
     } else {
         alert(response.statusText)
     }
