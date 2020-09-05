@@ -1,10 +1,16 @@
 async function deleteFormHandler(event) {
     event.preventDefault();
     let id = document.querySelector('.title').outerHTML.split('"')[1]
+    console.log(id[1])
+
+    
 
 
     const response = await fetch(`/api/search/${id}`, {
-        method: 'DELETE'
+        method: 'PUT',
+        body: {
+
+        }
     })
 
     if (response.ok) {
@@ -14,4 +20,4 @@ async function deleteFormHandler(event) {
     }
 }
 
-document.querySelector('#delete-one-job').addEventListener('click', deleteFormHandler)
+document.querySelector('#favorite').addEventListener('click', deleteFormHandler)

@@ -2,8 +2,9 @@
     <div class="card bg-dark">
         <div class="card-header">
             <h3>
-                <a id="{{id}}" class="title text-white" href="{{url}}"  target="_blank">
+                <a id="{{id}}" class="title text-white" href="{{url}}" target="_blank">
                     {{title}}
+                    <span></span>
                 </a>
             </h3>
         </div>
@@ -12,7 +13,11 @@
                 <p>{{company_name}}</p>
                 <p>{{location}}</p>
             </blockquote>
-        <button id="delete-one-job" type="submit" class="btn btn-link bg-danger text-white">Delete this job?</button>
+            <div class="d-flex justify-content-around">
+                <button id="delete-one-job" type="submit" class="btn btn-link bg-danger col-4 text-white">Delete?</button>
+                <button id="favorite" type="submit" class="btn btn-link bg-primary col-4 text-white">Favorite?</button>
+                <button id="comment" type="submit" class="btn btn-link bg-primary col-4 text-white">Comment?</button>
+            </div>
         </div>
     </div>
 </article>
