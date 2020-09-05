@@ -14,7 +14,12 @@
                     </div>
                     <button id="themuse" type="submit" class="btn btn-link bg-primary text-white">The Muse</button>
                     <button id="jooble" type="submit" class="btn btn-link bg-primary text-white">Jooble</button>
+                    {{#if searches.length}}
+                        <button id="delete-all" type="submit" class="btn btn-link bg-danger text-white mt-5">Delete Search History</button>
+                    {{/if}}
+                    
                 </div>
+
             </div>
 
             {{!-- 2nd card --}}
@@ -35,8 +40,13 @@
                 </section>
             {{/if}}
         </div>
+        
     </main>
 </div>
 
 
 <script src="/javascript/getalljobs.js"></script>
+{{#if searches.length}}
+    <script src="/javascript/deletealljobs.js"></script>
+    <script src="/javascript/deleteonejob.js"></script>
+{{/if}}

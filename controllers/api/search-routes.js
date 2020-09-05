@@ -49,6 +49,38 @@ router.post('/', (req, res) => {
         });    
 });
 
+router.delete('/', (req, res) => {
+    Search.destroy({
+        where: {
+            user_id: req.session.user_id
+        }
+    })
+    .then(dbSearchData => res.json(dbSearchData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+router.delete('/:id', (req, res) => {
+    Search.destroy({
+        where: {
+        id: req.params.id
+        }
+    })
+    .then(dbPostData => {
+        if (!dbPostData) {
+            res.status(404).json({ message: 'No job found with this id' });
+            return;
+        }
+        res.json(dbPostData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
 module.exports = router;
 
 // router.get('/:id', (req, res) => {

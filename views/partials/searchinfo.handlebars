@@ -1,13 +1,18 @@
 <article>
     <div class="card bg-dark">
         <div class="card-header">
-            <h3><a class="text-white" href="{{url}}" target="_blank">{{title}}</a></h3>
+            <h3>
+                <a id="{{id}}" class="title text-white" href="{{url}}"  target="_blank">
+                    {{title}}
+                </a>
+            </h3>
         </div>
         <div class="card-body">
             <blockquote class="mb-0">
                 <p>{{company_name}}</p>
                 <p>{{location}}</p>
             </blockquote>
+        <button id="delete-one-job" type="submit" class="btn btn-link bg-danger text-white">Delete this job?</button>
         </div>
     </div>
 </article>
