@@ -1,13 +1,13 @@
 const router = require('express').Router();
-// const sequelize = require('../config/connection');
 const { Search } = require('../models');
 const { withAuth, loggedIn } = require('../utils/auth')
 
-
+// localhost:3001/    this is the homepage
 router.get('/', loggedIn, (req, res) => {
   res.render('homepage');
 });
 
+// localhost:3001/login
 router.get('/login', loggedIn, (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
@@ -17,6 +17,7 @@ router.get('/login', loggedIn, (req, res) => {
   res.render('login');
 });
 
+// localhost:3001/signup
 router.get('/signup', loggedIn, (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
@@ -26,17 +27,21 @@ router.get('/signup', loggedIn, (req, res) => {
   res.render('signup');
 });
 
+// localhost:3001/dashboard
 router.get('/dashboard', withAuth, (req, res) => {
   Search.findAll({
+    // orders all the jobs first by favorite and then by id
+    order: [
+      ['favorite', 'DESC'],
+      ['id', 'DESC']
+  ],
     where: {
       user_id: req.session.user_id
     },
-    attributes: ['id', 'url', 'company_name', 'title', 'location'],
+    attributes: ['id', 'url', 'company_name', 'title', 'favorite', 'location'],
   })
   .then(dbSearchData => {
     const searches = dbSearchData.map(search => search.get({ plain: true }));
-
-    
     res.render('dashboard', { searches, loggedIn: true });
   })
   .catch(err => {
@@ -46,36 +51,3 @@ router.get('/dashboard', withAuth, (req, res) => {
 });
 
 module.exports = router;
-
-// router.get('/:id', (req, res) => {
-//     Search.findOne({
-//         where: {
-//             id: req.params.id
-//         },
-//         attributes: [
-//             'id',
-//             'url',
-//             'company_name',
-//             'title',
-//             'salary',
-//             'location'
-//         ],
-//         include: [
-//             {
-//                 model: User,
-//                 attributes: ['username']
-//             }
-//         ]
-//     })
-//         .then(dbSearchData => {
-//             if (!dbSearchData) {
-//                 res.status(404).json({ message: 'No post found with this id' });
-//                 return;
-//             }
-//             res.json(dbSearchData);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json(err);
-//         });
-// });

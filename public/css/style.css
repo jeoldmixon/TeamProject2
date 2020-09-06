@@ -10,9 +10,6 @@
 * {
   box-sizing: border-box;
 }
-.full-width {
-  width: 100%;
-}
 
 body {
   
@@ -104,15 +101,6 @@ ul {
 .github {
   max-width: 60px;
 }
-/* .hero {
-  padding: 3% 4%;
-  background-color: var(--dark);
-  color: var(--primary);
-}
-
-.hero p {
-  max-width: 75%;
-} */
 
 .app-title {
   font-size: 3rem;
@@ -140,20 +128,6 @@ ul {
   background-color: var(--dark);
 }
 
-/* .status-icon {
-  padding: 2px 5px;
-  margin: 0 5px;
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: var(--border-radius);
-} */
-
-/* .icon-danger {
-  color: rgb(255, 70, 70);
-} */
-
-/* .icon-success {
-  color: rgb(29, 153, 255);
-} */
 
 /* CARDS */
 .card {
@@ -200,11 +174,6 @@ ul {
 .min-100-vw {
   min-width: 100vw;
 }
-
-/* FONT UTILS */
-/* .text-uppercase {
-  text-transform: uppercase;
-} */
 
 /* FLEX CONTENT */
 .flex-row {
