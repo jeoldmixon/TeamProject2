@@ -27,9 +27,11 @@ SO THAT I can apply for them without having to apply immediately.
 ## Acceptance Criteria
 
 GIVEN a functional Express.js API
+THAT uses MVC folder structure
 WHEN I add my database name, MySQL username, API keys, and MySQL password to an environment variable file
-THEN I am able to connect to a database using Sequelize that maintains user accounts
+THEN I am able to connect to a database using Sequelize that maintains user accounts using authentication
 WHEN I enter the command to invoke the application
 THEN my server is started and the Sequelize models are synced to the MySQL database
 THEN I am able to test API calls from various external sources
+THEN using templating I am able to use Handlebars to display requests
 LASTLY I deploy to HEROKU for end users to access
