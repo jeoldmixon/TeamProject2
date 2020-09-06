@@ -26,12 +26,13 @@ SO THAT I can apply for them without having to apply immediately.
 
 ## Acceptance Criteria
 
-GIVEN a functional Express.js API
-THAT uses MVC folder structure
-WHEN I add my database name, MySQL username, API keys, and MySQL password to an environment variable file
+GIVEN a functional Node and Express.js API
+THAT uses MVC paradigm and can GET and POST routes for retreving and adding new data
+WHEN I add my database name, MySQL username / password, and API keys to an environment variable file
+THAT application includes user authentication (express-session and cookies) and a new npm called Password Validator
 THEN I am able to connect to a database using Sequelize that maintains user accounts using authentication
 WHEN I enter the command to invoke the application
 THEN my server is started and the Sequelize models are synced to the MySQL database
 THEN I am able to test API calls from various external sources
-THEN using templating I am able to use Handlebars to display requests
-LASTLY I deploy to HEROKU for end users to access
+THEN using Handlebars as the template engine I can
+LASTLY deploy to HEROKU for end users to access
