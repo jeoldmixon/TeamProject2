@@ -1,13 +1,14 @@
 const router = require('express').Router();
 // const sequelize = require('../config/connection');
 const { Search } = require('../models');
-const withAuth = require('../utils/auth')
+const { withAuth, loggedIn } = require('../utils/auth')
 
-router.get('/', (req, res) => {
+
+router.get('/', loggedIn, (req, res) => {
   res.render('homepage');
 });
 
-router.get('/login', (req, res) => {
+router.get('/login', loggedIn, (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
@@ -16,7 +17,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/signup', (req, res) => {
+router.get('/signup', loggedIn, (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
