@@ -19,9 +19,9 @@ https://secret-journey-15196.herokuapp.com/
 ## Mock-Up
 
 ![Screen Shot of Homepage](./public/images/homepage.png)
-![Screen Shot of Dashboard](./public/images/dashboard.png)
-![Screen Shot of Login Page](./public/images/login.png)
 ![Screen Shot of Signup](./public/images/signup.png)
+![Screen Shot of Login Page](./public/images/login.png)
+![Screen Shot of Dashboard](./public/images/dashboard.png)
 
 ## User Story
 
@@ -51,5 +51,7 @@ SO THAT I can apply for them without having to apply immediately.
 ## Contributors
 
 [Justin E. Oldmixon](https://github.com/jeoldmixon)
+
 [Joshua Weisbrod-Torres](https://github.com/joshuaweisbrodtorres)
+
 [Nicolas Esteban Esquivel Ruiz](https://github.com/NIKO09ES)
