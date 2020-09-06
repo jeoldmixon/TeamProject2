@@ -12,10 +12,23 @@
                 <p>{{company_name}}</p>
                 <p>{{location}}</p>
             </blockquote>
-        <button id="delete-one-job" type="submit" class="btn btn-link bg-danger text-white">Delete this job?</button>
+        <button id="delete-{{id}}" type="submit" class="btn btn-link bg-danger text-white delete-one-job">Delete this job?</button>
         </div>
     </div>
 </article>
 
-<script src="/javascript/deleteonejob.js"></script>
+<script>document.querySelector("#delete-{{id}}").addEventListener('click', async function(event) {
+    event.preventDefault();
 
+    let id = this.parentElement.parentElement.querySelector('.title').outerHTML.split('"')[1]
+
+    const response = await fetch(`/api/search/${id}`, {
+        method: 'DELETE'
+    })
+
+    if (response.ok) {
+         document.location.reload();
+    } else {
+        alert(response.statusText)
+    }})
+</script>
