@@ -1,13 +1,101 @@
 <article>
     <div class="card bg-dark">
         <div class="card-header">
-            <h3><a class="text-white" href="{{url}}" target="_blank">{{title}}</a></h3>
+            <h3>
+                {{!-- This ID is used to find which job to update or delete --}}
+                <a id="{{id}}" class="title text-white" href="{{url}}"  target="_blank">
+                    {{title}}
+                    {{!-- If favorited it will have a blue heart otherwise it has a transparent heart --}}
+                        {{#if favorite}}
+                            <span>💙</span>
+                        {{else}}  
+                            <span>♡</span>
+                        {{/if}}
+                </a>
+            </h3>
         </div>
         <div class="card-body">
             <blockquote class="mb-0">
                 <p>{{company_name}}</p>
                 <p>{{location}}</p>
             </blockquote>
+            <div class="d-flex justify-content-around">
+                {{!-- All buttons on every post.  If already favorited it gets the favorite button and visa-versa --}}
+                <button id="delete-{{id}}" type="submit" class="btn btn-link bg-danger text-white col-3 delete-one-job">Delete this job?</button>
+                {{#if favorite}}
+                    <button id="unfavorite-{{id}}" type="submit" class="btn btn-link bg-info col-3 text-white">Unfavorite?</button>
+                {{else}}
+                    <button id="favorite-{{id}}" type="submit" class="btn btn-link bg-primary col-3 text-white">Favorite?</button>
+                {{/if}}
+            </div>
         </div>
     </div>
 </article>
+
+<script>
+    // An event listener for all buttons on the page.  It takes the id from the search so each button has a unique id
+    document.querySelector("#delete-{{id}}").addEventListener('click', async function(event) {
+        event.preventDefault();
+
+        let id = this.parentElement.parentElement.parentElement.querySelector(".title").outerHTML.split('"')[1]
+
+        const response = await fetch(`/api/search/${id}`, {
+            method: 'DELETE'
+        })
+
+        if (response.ok) {
+            document.location.reload();
+        } else {
+            alert(response.statusText)
+        }
+    })
+
+    // if favorited it gets the unfavorited listener and visa-versa
+    {{#if favorite}}
+        document.querySelector("#unfavorite-{{id}}").addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            let id = this.parentElement.parentElement.parentElement.querySelector(".title").outerHTML.split('"')[1]
+            console.log(id)
+
+            const response = await fetch(`/api/search/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    favorite: 0
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                document.location.reload();
+            } else {
+                alert(response.statusText)
+            }
+        })
+    {{else}}
+        document.querySelector("#favorite-{{id}}").addEventListener('click', async function(event) {
+            event.preventDefault();
+
+            let id = this.parentElement.parentElement.parentElement.querySelector(".title").outerHTML.split('"')[1]
+
+            const response = await fetch(`/api/search/${id}`, {
+                method: 'PUT',
+                body: JSON.stringify({
+                    favorite: 1
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if (response.ok) {
+                document.location.reload();
+            } else {
+                alert(response.statusText)
+            }
+        })
+    {{/if}}
+</script>
+

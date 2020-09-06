@@ -1,10 +1,9 @@
-{{!-- Left side sticky lookup --}}
-
 <div class="flex-column min-100-vh">
     <h1 class="card bg-dark app-title"><i class="fab"></i> The Search Is On!</h1>
     <main class="flex-row justify-space-between">
-        <div class="col-12 col-md-4 position-sticky">
 
+        {{!-- Search/Delete all card --}}
+        <div class="col-12 col-md-4">
             <div class="card bg-dark">
                 <h3 class="card-header text-uppercase">Search</h3>
                 <div class="card-body">
@@ -14,24 +13,26 @@
                     </div>
                     <button id="themuse" type="submit" class="btn btn-link bg-primary text-white">The Muse</button>
                     <button id="jooble" type="submit" class="btn btn-link bg-primary text-white">Jooble</button>
+                    {{!-- Only shows the delete all button if there are jobs on the page --}}
+                    {{#if searches.length}}
+                        <button id="delete-all" type="submit" class="btn btn-link bg-danger text-white mt-5">Delete Search History</button>
+                    {{/if}}
                 </div>
             </div>
-
-            {{!-- 2nd card --}}
         </div>
 
-
+        {{!-- Post the jobs for the user--}}
         <div class="col-12 col-md-8">
             {{#if searches.length}}
                 <section>
                     <h2 class="subtitle">Search Results: </h2>
-                    <ul>
                         {{#each searches}}
-                            <li>
-                                {{> searchinfo}}
-                            </li>
+                            <ul>
+                                <li>
+                                    {{> searchinfo}}
+                                </li>
+                            </ul>
                         {{/each}}
-                    </ul>
                 </section>
             {{/if}}
         </div>
@@ -40,3 +41,7 @@
 
 
 <script src="/javascript/getalljobs.js"></script>
+{{!-- only loads the javascript for delete all jobs if there are jobs on the page --}}
+{{#if searches.length}}
+    <script src="/javascript/deletealljobs.js"></script>
+{{/if}}

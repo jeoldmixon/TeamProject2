@@ -1,35 +1,57 @@
-## TeamProject2
+# gitDevJob
 
-Team Project 2
+An application to keep job hunting from becoming a full-time job for junior developers.
+
+## Description
+
+A conscise application for junior developers to job hunt multiple sites in one application.
 
 ## Submission Links
 
+GitHub:
+
+https://github.com/jeoldmixon/TeamProject2
+
+Heroku:
+
+https://secret-journey-15196.herokuapp.com/
+
 ## Mock-Up
 
-<!-- ![Insomnia Demo](./Assets/13-orm-homework-demo-03.gif) -->
+![Screen Shot of Homepage](./public/images/homepage.png)
+![Screen Shot of Signup](./public/images/signup.png)
+![Screen Shot of Login Page](./public/images/login.png)
+![Screen Shot of Dashboard](./public/images/dashboard.png)
 
 ## User Story
 
-<!-- ```md
-AS A manager at an internet retail company
-I WANT a back end for my e-commerce website that uses the latest technologies
-SO THAT my company can compete with other e-commerce companies
-``` -->
+AS A developer
+I WANT to be able to search multiple job sites
+SO THAT I can browse multiple jobs without having to create multiple logins.
+I WANT to be able to save favorite jobs
+SO THAT I can apply for them without having to apply immediately.
 
-## Acceptance Criteria
+## Technologies
 
-<!-- ```md
-GIVEN a functional Express.js API
-WHEN I add my database name, MySQL username, and MySQL password to an environment variable file
-THEN I am able to connect to a database using Sequelize
-WHEN I enter schema and seed commands
-THEN a development database is created and is seeded with test data
-WHEN I enter the command to invoke the application
-THEN my server is started and the Sequelize models are synced to the MySQL database
-WHEN I open API GET routes in Insomnia for categories, products, or tags
-THEN the data for each of these routes is displayed in a formatted JSON
-WHEN I open API GET routes in Insomnia for a single category, product, or tag
-THEN the data for that category, product, or tag is displayed in a formatted JSON
-WHEN I test API POST, PUT, and DELETE routes in Insomnia
-THEN I am able to successfully create, update, and delete data in my database
-``` -->
+- JavaScript
+- Node.js
+- Express
+- Express-Sessions
+- Handlebars
+- Express-Handlebars
+- Axios
+- Bcrypt
+- Connect-Session-Sequelize
+- MySQL2
+- Sequelize
+- Node-fetch
+- GIT
+- GitHub
+
+## Contributors
+
+[Justin E. Oldmixon](https://github.com/jeoldmixon)
+
+[Joshua Weisbrod-Torres](https://github.com/joshuaweisbrodtorres)
+
+[Nicolas Esteban Esquivel Ruiz](https://github.com/NIKO09ES)
