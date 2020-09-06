@@ -1,3 +1,4 @@
+// Deletes all post on the dashboard.
 async function deleteFormHandler(event) {
     event.preventDefault();
 

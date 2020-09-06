@@ -1,5 +1,9 @@
+// Calls either API and sends the city name to the POST route
+
+// Takes the city input into the DOM
 const city = document.getElementById('city');
 
+// The Muse
 async function getMuseJobs(event) {
     event.preventDefault()
     
@@ -21,8 +25,7 @@ async function getMuseJobs(event) {
     }
 
 }
-
-
+// JOOBLE
 async function getJoobleJobs(event) {
     event.preventDefault()
 
@@ -43,5 +46,6 @@ async function getJoobleJobs(event) {
         alert(response.statusText)
     }
 }
+
 document.querySelector('#themuse').addEventListener('click', getMuseJobs)
 document.querySelector('#jooble').addEventListener('click', getJoobleJobs)

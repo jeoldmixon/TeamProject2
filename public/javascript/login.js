@@ -1,3 +1,4 @@
+// Handles the loging in of a user
 async function loginFormHandler(event) {
   event.preventDefault();
 

@@ -28,7 +28,6 @@
     "mysql2": "^2.1.0",
     "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
-    "password-validator": "^5.1.0",
     "sequelize": "^6.3.4"
   }
 }
