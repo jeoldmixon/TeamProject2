@@ -15,15 +15,15 @@
 </head>
 
 <body class="bg-secondary">
-    <header class="d-flex justify-content-around bg-dark">
+    <header class="d-flex justify-content-around bg-dark p-2">
         <h1 class="text-white">gitDevJob</h1>
         <nav>
             <ul>
-            {{!-- {{#if loggedIn}} --}}
+            {{#if loggedIn}}
                 <li>
                     <button id="logout" class="btn btn-link bg-primary text-white">logout</button>
                 </li>
-            {{!-- {{/if}} --}}
+            {{/if}}
             </ul>
         </nav>
     </header>
@@ -43,9 +43,9 @@
             </div>
         </div>
     </footer>
-    {{!-- {{#if loggedIn}} --}}
+    {{#if loggedIn}}
         <script src="/javascript/logout.js"></script>
-    {{!-- {{/if}} --}}
+    {{/if}}
 </body>
 
 </html>
