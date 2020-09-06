@@ -1,6 +1,10 @@
-## gitDevJob
+# gitDevJob
 
-An application to keep job hunting from becoming a full-time job.
+An application to keep job hunting from becoming a full-time job for junior developers.
+
+## Description
+
+A conscise application for junior developers to job hunt multiple sites in one application.
 
 ## Submission Links
 
@@ -14,7 +18,10 @@ https://secret-journey-15196.herokuapp.com/
 
 ## Mock-Up
 
-[Screen Shot of Dashboard](./public/images/image.png)
+![Screen Shot of Homepage](./public/images/homepage.png)
+![Screen Shot of Dashboard](./public/images/dashboard.png)
+![Screen Shot of Login Page](./public/images/login.png)
+![Screen Shot of Signup](./public/images/signup.png)
 
 ## User Story
 
@@ -24,15 +31,25 @@ SO THAT I can browse multiple jobs without having to create multiple logins.
 I WANT to be able to save favorite jobs
 SO THAT I can apply for them without having to apply immediately.
 
-## Acceptance Criteria
+## Technologies
 
-GIVEN a functional Node and Express.js API
-THAT uses MVC paradigm and can GET and POST routes for retreving and adding new data
-WHEN I add my database name, MySQL username / password, and API keys to an environment variable file
-THAT application includes user authentication (express-session and cookies) and a new npm called Password Validator
-THEN I am able to connect to a database using Sequelize that maintains user accounts using authentication
-WHEN I enter the command to invoke the application
-THEN my server is started and the Sequelize models are synced to the MySQL database
-THEN I am able to test API calls from various external sources
-THEN using Handlebars as the template engine I can
-LASTLY deploy to HEROKU for end users to access
+- JavaScript
+- Node.js
+- Express
+- Express-Sessions
+- Handlebars
+- Express-Handlebars
+- Axios
+- Bcrypt
+- Connect-Session-Sequelize
+- MySQL2
+- Sequelize
+- Node-fetch
+- GIT
+- GitHub
+
+## Contributors
+
+[Justin E. Oldmixon](https://github.com/jeoldmixon)
+[Joshua Weisbrod-Torres](https://github.com/joshuaweisbrodtorres)
+[Nicolas Esteban Esquivel Ruiz](https://github.com/NIKO09ES)
